@@ -15,13 +15,11 @@ CPRCalculator.prototype.VO2_max = function(obj) {
 };
 
 CPRCalculator.prototype.Assesment = function(obj) {
-  if (obj.distance > 0) {
-    if (obj.gender == 'male') {
-      setAssMessageMale(obj);
-    }
-    else {
-      setAssMessageFemale(obj);
-    }
+  if (obj.gender == 'male') {
+    setAssMessageMale(obj);
+  }
+  else {
+    setAssMessageFemale(obj);
   }
 };
 

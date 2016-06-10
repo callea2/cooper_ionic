@@ -40,3 +40,16 @@ angular.module('starter.controllers', [])
     }, 1000);
   };
 })
+
+.controller('TestController', function($scope) {
+  $scope.data = {};
+  $scope.give_assesment = function() {
+    var person = new Person({
+      gender: $scope.data.gender,
+      age: $scope.data.age
+    });
+    person.Assesment($scope.data.distance);
+    $scope.person = person;
+    console.log($scope.person)
+  };
+});
