@@ -43,12 +43,12 @@ angular.module('starter.controllers', [])
 
 .controller('TestController', function($scope) {
   $scope.data = {};
-  $scope.give_assesment = function() {
+  $scope.calculateCooper = function() {
     var person = new Person({
       gender: $scope.data.gender,
       age: $scope.data.age
     });
-    person.Assesment($scope.data.distance);
+    person.assessCooper($scope.data.distance);
     $scope.person = person;
     console.log($scope.person)
   };
