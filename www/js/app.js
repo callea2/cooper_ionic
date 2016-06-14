@@ -12,7 +12,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ng-token-auth'])
       apiUrl: API_URL
     });
   })
-  
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -44,7 +44,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ng-token-auth'])
     views: {
       'menuContent': {
         templateUrl: 'templates/test/test.html',
-        controller: 'TestController'
+        controller: 'TestCtrl'
+      }
+    }
+  })
+
+  .state('app.signup', {
+    url: '/signup',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/signup/signup.html',
+        controller: 'UserRegCtrl'
       }
     }
   })

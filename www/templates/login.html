@@ -18,12 +18,12 @@
         </label>
         <label class="item">
           <button class="button button-block button-positive" type="submit">Log in</button>
-          <div class="row" ng-if="errorMessage">
-            <p ng-repeat="error in errorMessage.errors">
-              {{error}}
-            </p>
-          </div>
         </label>
+        <div class="row" ng-if="errorMessage">
+          <p ng-repeat="error in errorMessage.errors">
+            {{error}}
+          </p>
+        </div>
       </div>
     </form>
   </ion-content>

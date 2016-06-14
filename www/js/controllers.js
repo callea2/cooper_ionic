@@ -41,10 +41,25 @@ angular.module('starter.controllers', [])
         $scope.errorMessage = error;
       });
   };
-
 })
 
-.controller('TestController', function($scope) {
+.controller('UserRegCtrl', function($scope, $auth) {
+  $scope.handleRegBtnClick = function() {
+    $auth.submitRegistration($scope.registrationForm)
+      .then(function (resp) {
+        $auth.submitLogin({
+          email: $scope.registrationForm.email,
+          password: $scope.registrationForm.password
+        });
+      })
+      .catch(function (error) {
+        $ionicLoading.hide();
+        $scope.errorMessage = error;
+      });
+  };
+})
+
+.controller('TestCtrl', function($scope) {
   $scope.gender = ['Male', 'Female']
   $scope.ageValues = {
     min: 13,
