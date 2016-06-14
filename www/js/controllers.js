@@ -8,7 +8,7 @@ angular.module('starter.controllers', [])
                                  $ionicLoading) {
 
   $rootScope.$on('auth:login-success', function(ev, user) {
-    $scope.currentUser = user;
+    $scope.currentUser = angular.extend(user, $auth.retrieveData('auth_headers'));
   });
 
   $scope.loginData = {};
@@ -43,6 +43,45 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('PerformanceCtrl', function($scope, performanceData, $ionicLoading, $ionicPopup){
+  $scope.saveData = function(person){
+    var data = {performance_data: {data: {message: person.cooperMessage}}};
+    $ionicLoading.show({
+      template: 'Saving...'
+    });
+    performanceData.save(data, function(response){
+      $ionicLoading.hide();
+      $scope.showAlert('Sucess', response.message);
+    }, function(error){
+      $ionicLoading.hide();
+      $scope.showAlert('Failure', error.statusText);
+    })
+  };
+
+  $scope.retrieveData = function(){
+    $ionicLoading.show({
+      template: 'Retrieving data...'
+    });
+    performanceData.query({}, function(response){
+      $state.go('app.data', {savedDataCollection: response.entries});
+      $ionicLoading.hide();
+    }, function(error){
+      $ionicLoading.hide();
+      $scope.showAlert('Failure', error.statusText);
+    })
+  };
+
+  $scope.showAlert = function(message, content) {
+    var alertPopup = $ionicPopup.alert({
+      title: message,
+      template: content
+    });
+    alertPopup.then(function(res) {
+    // Place some action here if needed...
+    });
+  };
+})
+
 .controller('UserRegCtrl', function($scope, $auth) {
   $scope.handleRegBtnClick = function() {
     $auth.submitRegistration($scope.registrationForm)
@@ -57,6 +96,12 @@ angular.module('starter.controllers', [])
         $scope.errorMessage = error;
       });
   };
+})
+
+.controller('DataCtrl', function($scope, $stateParams){
+  $scope.$on('$ionicView.enter', function () {
+    $scope.savedDataCollection = $stateParams.savedDataCollection;
+  });
 })
 
 .controller('TestCtrl', function($scope) {
