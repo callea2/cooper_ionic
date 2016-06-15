@@ -43,7 +43,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PerformanceCtrl', function($scope, performanceData, $ionicLoading, $ionicPopup){
+.controller('PerformanceCtrl', function($scope, performanceData, $ionicLoading, $ionicPopup, $state){
   $scope.saveData = function(person){
     var data = {performance_data: {data: {message: person.cooperMessage}}};
     $ionicLoading.show({
