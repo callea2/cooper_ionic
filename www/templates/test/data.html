@@ -4,7 +4,7 @@
       <div class="col">
         <h5>Saved data for {{currentUser.name || currentUser.email}}</h5>
         <canvas ng-if="savedDataCollection" id="doughnut" class="chart chart-doughnut"
-                chart-data="data" chart-labels="labels" legend="true">
+                chart-data="data" chart-labels="labels" legend="false">
         </canvas>
 
         <canvas ng-if="savedDataCollection" id="radar" class="chart chart-radar"
